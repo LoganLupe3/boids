@@ -2,16 +2,17 @@
 #ifndef BOID_H
 #define BOID_H
 
-struct Boid{
-    sf::CircleShape boid;
-    float radius;
+class Boid: public sf::CircleShape{
+    private:
+        sf::Vector2f position;
+        sf::Vector2f velocity;
+        sf::Vector2f acceleration;
+    public:
+        Boid(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f acc);
+        Boid();
 
-    sf::Vector2f velocity;
-    sf::Vector2f force;
-
-    Boid(const sf::Vector2f& init_Pos, const sf::Vector2f init_Vel);
-    void AddForce(const sf::Vector2f& force);
-    void move();
+        sf::CircleShape show();
+        void update();
 };
 
 #endif

@@ -1,22 +1,28 @@
 #include "boid.h"
 
-Boid::Boid(const sf::Vector2f& init_Pos, const sf::Vector2f init_Vel){
-    velocity = init_Vel;
-    radius = 5;
-    boid.setPosition(init_Pos);
+Boid::Boid(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f acc){
+    position = pos;
+    velocity = vel;
+    acceleration = acc;
+}
+
+Boid::Boid(){
+    position = sf::Vector2f(0, 0);
+    velocity = sf::Vector2f(0, 0);
+    acceleration = sf::Vector2f(0, 0);
+}
+
+sf::CircleShape Boid::show(){
+    sf::CircleShape boid;
+    boid.setRadius(5);
+    boid.setOrigin(boid.getRadius(), boid.getRadius());
+    boid.setPosition(sf::Vector2f(400, 300));
     boid.setFillColor(sf::Color::White);
-    boid.setOutlineThickness(0);
-    boid.setOutlineColor(sf::Color::White);
-    boid.setPointCount(50);
-    boid.setRadius(radius);
-    boid.setOrigin(radius, radius);
+
+    return boid;
 }
 
-void Boid::AddForce(const sf::Vector2f& force){
-    this->force = force;
-    velocity += force;
-}
-
-void Boid::move(){
-    boid.move(velocity);
+void Boid::update(){
+    position += velocity;
+    velocity += acceleration;
 }
