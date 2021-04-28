@@ -1,10 +1,11 @@
 #include <iostream>
 #include "boid.h"
+#include "flock.h"
 
 int height = 600, width = 800;
 
 int main(){
-    Boid boid(sf::Vector2f(0,0), sf::Vector2f(0.25,0), sf::Vector2f(0,0));
+    Flock flock;
 
     sf::RenderWindow window(sf::VideoMode(width, height), "Boids");
 
@@ -17,9 +18,10 @@ int main(){
                 window.close();
         }
 
-        window.clear();
-        boid.update();    
-        window.draw(boid);
+        window.clear(); 
+        for(int i = 0; flock.getNumBoids(); i++){
+            window.draw(flock.getBoid(i));
+        }
         window.display();
     }
 

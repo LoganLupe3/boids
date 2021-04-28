@@ -1,12 +1,9 @@
+#include <stdlib.h>
+#include <vector>
 #include "flock.h"
 
 Flock::Flock(){
     numBoids = 1;
-    boids = new Boid[numBoids];
-}
-
-Flock::~Flock(){
-    delete boids;
 }
 
 void Flock::incNumBoids(){
@@ -29,5 +26,22 @@ void Flock::addBoid(){
         boid.setPosition(position);
         boid.setVelocity(velocity);
         boid.setAcceleration(acceleration);
+
+        incNumBoids();
+
+        Boid *newSize = new Boid[numBoids];
+
+        for(int i = 0; i < numBoids - 1; i++){
+            newSize[i] = boids[i];
+        }
+        boids = newSize;
+
+        delete newSize;
     }
+}
+
+int Flock::getNumBoids(){ return numBoids; }
+
+Boid Flock::getBoid(int i){
+    return boids[i];
 }
