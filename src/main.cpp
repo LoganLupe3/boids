@@ -4,7 +4,7 @@
 int height = 600, width = 800;
 
 int main(){
-    Boid boid;
+    Boid boid(sf::Vector2f(0,0), sf::Vector2f(1,0), sf::Vector2f(0,0));
 
     sf::RenderWindow window(sf::VideoMode(width, height), "Boids");
 
@@ -17,8 +17,9 @@ int main(){
                 window.close();
         }
 
-        window.clear();    
-        window.draw(boid.show());
+        window.clear();
+        boid.update();    
+        window.draw(boid);
         window.display();
     }
 
