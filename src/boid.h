@@ -11,6 +11,15 @@ class Boid: public sf::CircleShape{
         Boid();
         
         void update();
+
+        void setVelocity(sf::Vector2f vel);
+        void setAcceleration(sf::Vector2f acc);
+
+        sf::Vector2f getVelocity();
+        sf::Vector2f getAcceleration();
+
+        sf::Vector2f getRandomVelocity();
+        sf::Vector2f getRandomAcceleration();
 };
 
 #endif
